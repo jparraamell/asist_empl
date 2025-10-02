@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro de Entrada - Sistema de Asistencia{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="text-center mb-4">
+                <i class="fas fa-sign-in-alt text-success" style="font-size: 4rem;"></i>
+                <h1 class="fw-bold text-success mt-3">REGISTRO DE ENTRADA</h1>
+                <p class="text-muted">Escanea tu código QR para marcar tu llegada</p>
+            </div>
+            
+            <!-- Stream de video OpenCV -->
+            <div class="text-center mb-4">
+                <div class="video-container" style="margin: 20px auto; display: inline-block;">
+                    <img src="{% url 'video_feed' %}" 
+                         alt="Escáner QR" 
+                         style="max-width: 100%; height: auto; border: 4px solid #28a745; border-radius: 15px; box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);">
+                </div>
+            </div>
+            
+            <!-- Instrucciones -->
+            <div class="text-center">
+                <div class="alert alert-success border-0 shadow-sm">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Posiciona tu código QR frente a la cámara</strong><br>
+                    <small>El sistema detectará automáticamente tu código y registrará tu entrada</small>
+                </div>
+            </div>
+            
+            <!-- Estado del sistema -->
+            <div class="text-center mt-4">
+                <span class="badge bg-success me-2 px-3 py-2">
+                    <i class="fas fa-wifi me-1"></i>Sistema en línea
+                </span>
+                <span class="badge bg-primary me-2 px-3 py-2">
+                    <i class="fas fa-calendar-day me-1"></i><span id="fecha-actual"></span>
+                </span>
+                <span class="badge bg-info px-3 py-2">
+                    <i class="fas fa-clock me-1"></i><span id="hora-actual"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        min-height: 100vh;
+    }
+    
+    .video-container img {
+        transition: all 0.3s ease;
+    }
+    
+    .video-container img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4) !important;
+    }
+    
+    .badge {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .alert {
+        border-radius: 15px;
+    }
+    
+    @media (max-width: 768px) {
+        .video-container img {
+            max-width: 300px !important;
+        }
+        
+        h1 {
+            font-size: 2rem !important;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Actualizar fecha y hora en tiempo real
+function actualizarFechaHora() {
+    const ahora = new Date();
+    const fecha = ahora.toLocaleDateString('es-ES');
+    const hora = ahora.toLocaleTimeString('es-ES');
+    
+    const fechaElement = document.getElementById('fecha-actual');
+    const horaElement = document.getElementById('hora-actual');
+    
+    if (fechaElement) fechaElement.textContent = fecha;
+    if (horaElement) horaElement.textContent = hora;
+}
+
+// Inicializar cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    actualizarFechaHora();
+    setInterval(actualizarFechaHora, 1000);
+});
+</script>
+{% endblock %}

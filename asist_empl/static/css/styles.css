@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Verificar que este CSS se está cargando */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sticky Footer Layout */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: auto; /* Esto empuja el footer hacia abajo */
+}
+
+footer > div {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer p {
+    margin: 0 0 10px;
+}
+footer .text-muted {
+    color: #fff !important;
+}
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+        border: none;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .display-1 {
+        font-size: 8rem;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { opacity: 0.7; }
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+    }
+
+    /* Mejoras para los íconos circulares */
+    .rounded-circle {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Efectos adicionales para accesos rápidos */
+    .card.text-decoration-none:hover .rounded {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+
+    /* Secciones con fondo */
+    .bg-light {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    }
+
+    /* Responsive mejorado */
+    @media (max-width: 768px) {
+        .display-1 {
+            font-size: 4rem;
+        }
+
+        .hero-section {
+            min-height: 300px;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+        }
+
+        /* Botones de entrada/salida en móvil */
+        .col-6 .btn {
+            padding: 0.5rem 0.3rem;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-section h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-section .lead {
+            font-size: 1rem;
+        }
+
+        .btn-lg {
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+        }
+    }
