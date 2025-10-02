@@ -5,5 +5,5 @@ app_name = 'in_out'
 
 urlpatterns = [
     path('input/', views.input_page, name='input'),
-    path('output/', views.output_page, name='output'),
-]
+    path('output/', views.output_page, name='output'), 
+] 

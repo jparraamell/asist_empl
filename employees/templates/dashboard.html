@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="fw-bold">Bienvenido, {{ request.session.username }}</h2>
+            <p class="text-muted">Resumen de la actividad y gestión de empleados.</p>
+        </div>
+    </div>
+
+    <!-- Indicadores rápidos -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Empleados</h5>
+                    <p class="card-text fs-3" id="total-empleados">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Entradas Hoy</h5>
+                    <p class="card-text fs-3" id="entradas-hoy">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Salidas Hoy</h5>
+                    <p class="card-text fs-3" id="salidas-hoy">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Presentes Ahora</h5>
+                    <p class="card-text fs-3" id="presentes-ahora">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    {% include 'components/modals.html'%}
+
+    <!-- Reportes / gráficos -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Asistencias vs Ausencias</h5>
+                    <canvas id="chart-asistencias"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Horas Trabajadas por Empleado</h5>
+                    <canvas id="chart-horas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla de empleados -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Estado Actual de Empleados</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Rol</th>
+                                <th>Entrada</th>
+                                <th>Salida</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-empleados">
+                            <!-- Aquí llenas con JS o template Django -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS para animar números y cargar datos -->
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

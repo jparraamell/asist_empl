@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import StreamingHttpResponse
 import cv2
+from employees.models import Employee
 
 def home(request):
     return render(request, 'home.html')
@@ -10,8 +11,6 @@ def video_feed(request):
         generate_frames(),
         content_type='multipart/x-mixed-replace; boundary=frame'
     )
-    
-
 
 def generate_frames():
     """Generador que captura frames de la cámara y detecta códigos QR"""
@@ -29,6 +28,7 @@ def generate_frames():
         # Si se detecta un QR, dibujar un recuadro
         if data:
             print(f"Código QR detectado: {data}")
+            
             if bbox is not None:
                 bbox_int = bbox[0].astype(int)
                 cv2.polylines(frame, [bbox_int], True, (0, 255, 0), 2)

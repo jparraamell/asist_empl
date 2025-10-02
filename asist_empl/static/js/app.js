@@ -1,16 +1,16 @@
- // Animación de números
-    function animateNumber(element, target) {
-        let current = 0;
-        const increment = target / 50;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current);
-        }, 30);
-    }
+function animateNumber(element, target) {
+    if (!element) return;
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        element.textContent = Math.floor(current);
+    }, 30);
+}
 
     // Cargar estadísticas al cargar la página
     document.addEventListener('DOMContentLoaded', function () {

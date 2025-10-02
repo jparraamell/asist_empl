@@ -23,8 +23,12 @@ from asist_empl import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('', include('in_out.urls')),
     path('video_feed/', views.video_feed, name='video_feed'),
+
+    # Apps con prefijo y namespace
+    path('in_out/', include(('in_out.urls', 'in_out'), namespace='in_out')),
+    path('', include(('users.urls', 'users'), namespace='users')),
+    path('employees/', include(('employees.urls', 'employees'), namespace='employees')),
 ]
 
 # Servir archivos estáticos en desarrollo
